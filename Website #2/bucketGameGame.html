@@ -1,0 +1,125 @@
+<script src="processing.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+PImage drop;
+PImage bucket;
+PFont font;
+PImage backdrop;
+ArrayList drops;
+Bucket b;
+int count;
+int score= 0;
+int missed = 0;
+int saved = 0;
+int rate = 0;
+boolean preGame;
+boolean postGame2;
+
+void setup(){
+  size(1000, 750);
+  
+  drop = loadImage("https://lh3.ggpht.com/kuskOgZvjr5tefLkXUqGxt3wxFy1IUIqHEowuZfi8a6Qd9XeASiXulDDMhcq1yKGGII=w300", "jpg");
+  bucket = loadImage("http://static1.squarespace.com/static/52c4e8d4e4b0cf91c44b3511/t/54f8ae02e4b0ffd48a8308cf/1425583621258/S", "jpg");
+  backdrop = loadImage("https://ulife.vpul.upenn.edu/careerservices/blog/wp-content/uploads/2011/01/dripping-water.jpg", "jpg");
+  
+  drops = new ArrayList();
+  b = new Bucket();
+  
+font = loadFont("AlittleSunshine.ttf");
+textFont(font, 25);
+
+  fill(0);
+  
+  preGame = true;
+}
+
+void draw(){
+  noStroke();
+  
+  if (preGame) {
+    background(245,245,220);
+	text("Click here to begin. Press the f key to go left and the j key to go right.",120, 375);
+	text("Try to save every drop.The game ends when you miss 5 drops.", 120, 410);
+  }
+  else if( postGame2)
+  {
+      background(245,245,220);
+	  saved = score * 0.05;
+	  text("You saved " + score + " drops, which is " + saved + " mililiters of water." ,160, 375);
+  }
+  else {
+	image(backdrop, 0, 0, 1000, 750);
+	count++;
+	 
+	modifyList();
+	for (int i = 0; i < drops.size(); i++) {
+	 rate = (int)(random(1,4));
+	 alert(rate);
+	 drops.get(i).y += rate;
+	 image(drop, drops.get(i).x, drops.get(i).y, drops.get(i).size, drops.get(i).size);
+	}
+	image(bucket, b.x, b.y, b.size, b.size);
+  }
+  text("Score:" + score,900,100);
+  text("Missed:" + missed,900,130);
+}
+
+void keyTyped() {
+  if(key=='f' && b.x > 0) { 
+	b.x -= 15;
+  }
+  if(key==='j' && b.x < 1000 - b.size) { 
+	b.x += 15;
+  }
+}
+
+void mouseClicked() {
+	if (preGame) {
+		preGame = false;
+	}
+}
+
+void modifyList() {
+  if (count % 100 == 0) {
+    drops.add(new Drop())
+  }
+  if(missed == 5)
+  {
+     postGame2 = true;
+  }
+  for (Drop d: drops) {
+	if (d.x + d.size < b.x + b.size && d.x > b.x && d.y > b.y && d.y < 750 - b.size + 20) {
+		drops.remove(d);
+		score++;
+	}
+	else if (d.y - d.size > 750) {
+		drops.remove(d);
+		missed++;
+	}
+  }
+}
+
+class Drop {
+  int x;
+  int y;
+  int size;
+  
+  Drop() {
+	x = (int)(random(5,900));
+	y = -50;
+	size = 50;
+  }
+}
+
+class Bucket {
+  int x;
+  int y;
+  int size;
+  
+  Bucket() {
+	x = 100;
+	y = 550;
+	size = 200;
+  }
+}
+</script>
+<canvas id="mycanvas"></canvas>

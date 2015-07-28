@@ -1,0 +1,112 @@
+<html>
+
+    <head>
+	<style>
+	* {
+	margin: 0;
+	padding: 0;
+}
+/*Example 5*/
+#containerEx5 {
+	background: #333;
+	padding: 0px;
+	margin-top: 0px;
+}
+
+#ex5 {
+	width: 700px;
+	margin: 0 auto;
+	min-height: 300px;
+}
+
+#ex5 img {
+	opacity: 0.8;
+	
+	/*Transition*/
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	
+	/*Reflection*/
+	-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0,0,0,0.1)));
+}
+
+
+#ex5 img:hover {  
+   opacity: 1;
+   
+   /*Reflection*/
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0,0,0,0.4)));
+ 
+   /*Glow*/
+  -webkit-box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+  -moz-box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+  box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+}  
+
+
+
+/*Example 6*/
+/*Example 7*/
+/*Example 8*/
+/*Example 9*/
+/*Example 10*/
+/*Example 11*/
+/*Example 12*/
+/*Example 13*/
+/*Example 14*/
+/*Example 15*/
+/*Example 16*/
+/*Example 17*/
+/*Example 18*/
+
+/*Header*/
+#header {
+	font: 15px/30px Helvetica, sans-serif;
+	height: 30px;
+	background: #aaa;
+	color: white;
+	text-align: center;
+	margin: 0 0 15px 0;
+}
+
+#header a {
+	color: white;
+	text-decoration: none;
+}
+
+#header a:hover {
+	text-decoration: underline;
+}
+
+
+
+	</style>
+	</head>
+    <body>
+        <!--
+
+        DS Header
+
+        -->
+        <div id="header"></div>
+        <!--
+
+        Example
+
+        -->
+        <div id="containerEx5">
+            <div id="ex5">
+                <img src="TileDrop.png"></img>
+                <img src="http://lorempixum.com/100/100"></img>
+                <img src="http://lorempixum.com/100/100"></img>
+                <img src="http://lorempixum.com/100/100"></img>
+                <img src="http://lorempixum.com/100/100"></img>
+                <img src="http://lorempixum.com/100/100"></img>
+                <img src="http://lorempixum.com/100/100"></img>
+                <img src="http://lorempixum.com/100/100"></img>
+            </div>
+        </div>
+    </body>
+
+</html>
